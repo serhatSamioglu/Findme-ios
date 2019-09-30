@@ -62,7 +62,7 @@
                 <outlet property="userImage" destination="Dtr-h1-mwK" id="0hV-XO-GxY"/>
                 <outlet property="userName" destination="HwO-QX-TIZ" id="g7J-t1-ozH"/>
             </connections>
-            <point key="canvasLocation" x="169.56521739130437" y="134.26339285714286"/>
+            <point key="canvasLocation" x="-358" y="138"/>
         </tableViewCell>
     </objects>
 </document>

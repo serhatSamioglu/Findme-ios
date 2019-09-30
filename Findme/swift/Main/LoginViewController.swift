@@ -23,8 +23,11 @@ class LoginViewController: UIViewController , UITextFieldDelegate, UIPickerViewD
         ref = Database.database().reference()
         if Auth.auth().currentUser != nil {
             getCurrentUserDatas()
+            //Eski verileri telefonda tutarak açılma ekranında datalar gelene kadar onları basabilir
         }
-        
+        self.emailTextField.delegate = self//klavyeyi kapatmak icin
+        self.passwordTextField.delegate = self
+
         getLanguage()
         createPickerView()
         dissmissPickerView()
@@ -117,6 +120,11 @@ class LoginViewController: UIViewController , UITextFieldDelegate, UIPickerViewD
         }) { (error) in
             print(error.localizedDescription)
         }
-        
     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        return(true)
+    }
+    
 }

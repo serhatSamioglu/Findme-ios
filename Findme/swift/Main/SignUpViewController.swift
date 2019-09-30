@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import Firebase
 
-class SignUpViewController: UIViewController{
+class SignUpViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var userNameTextField: UITextField!
@@ -20,9 +20,12 @@ class SignUpViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        self.emailTextField.delegate = self
+        self.userNameTextField.delegate = self
+        self.passwordTextField.delegate = self
         ref = Database.database().reference()
     }
-
     
     @IBAction func signUpTabbed(_ sender: Any) {
         guard let email = emailTextField.text else {return}
@@ -34,7 +37,7 @@ class SignUpViewController: UIViewController{
                 print("User created")
                 let newUser = User(user!.user.uid, email, password, username)
                 self.ref.child("Users/\(user!.user.uid)").setValue(newUser.toDictionary())
-                
+                //device id tut banlarken filan işe yarar
                 let chanceRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                 chanceRequest?.displayName = username
                 chanceRequest?.commitChanges{error in
@@ -51,5 +54,12 @@ class SignUpViewController: UIViewController{
                 print("Error :  \(error!.localizedDescription)")
             }
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        userNameTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        return(true)
     }
 }

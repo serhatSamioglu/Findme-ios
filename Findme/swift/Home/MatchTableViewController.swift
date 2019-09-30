@@ -33,6 +33,7 @@ class MatchTableViewController: UITableViewController{
         self.tableView.register(cellNib, forCellReuseIdentifier: "matchItem")
         getDatasFromFirebase()
         tableView.tableFooterView = UIView(frame: .zero)//bos satirlardakileri cizgileri kaldiriyor
+        
     }
 
     // MARK: - Table view data source
@@ -66,21 +67,6 @@ class MatchTableViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 83.0
     }
-
-    /*override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-        if indexPath.row == recordsArray.count - 1 {
-            // we are at last cell load more content
-            // we need to bring more records as there are some pending records available
-            var index = recordsArray.count
-            limit = index + 20
-            while index < limit {
-                recordsArray.append(index)
-                index = index + 1
-            }
-            self.perform(#selector(loadTable), with: nil, afterDelay: 1.0)
-        }
-    }*/
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == limit - 1 {
@@ -100,6 +86,7 @@ class MatchTableViewController: UITableViewController{
     
     func getDatasFromFirebase(){
         ref.child("Users").observeSingleEvent(of: .value, with: { (snapshot) in
+            //MARK : observe (.childAdded kullanırsan otomatik döngüyü kuruyor
             for element in snapshot.children{
                 let childSnap = element as! DataSnapshot
                 /*if childSnap.childSnapshot(forPath: "imageUrl") != nil{
@@ -109,17 +96,17 @@ class MatchTableViewController: UITableViewController{
                     childSnap.childSnapshot(forPath: "examPassed").value as? Bool == true{
                     //let questionsOtherUsers = childSnap.childSnapshot(forPath: "examPassed").value as? String
                     //let arrayQuestionsOtherUsers = questionsOtherUsers!.components(separatedBy: "-")
-                    
-                    let deneme = childSnap.childSnapshot(forPath: "imageUrl").value as? String
-                    let deneme2 = childSnap.childSnapshot(forPath: "userName").value as? String
-                    
+
                     /*if deneme == ""{
                      deneme="https://firebasestorage.googleapis.com/v0/b/findme-ae3f4.appspot.com/o/Category%2FUsers%2F7pszFxz9nePOfEwcrWLJjWSFlzk2%2FCategories%2Ftest%2F1564923383248?alt=media&token=3dba4bc0-1178-4a0d-80e6-4df6b86b234b"
                      }*/
                     
-                    let newElement = ["picture":deneme,
-                                      "userName":deneme2,
+                    let newElement = ["picture":childSnap.childSnapshot(forPath: "imageUrl").value as? String,
+                                      "userName":childSnap.childSnapshot(forPath: "userName").value as? String,
+                                      "id":childSnap.childSnapshot(forPath: "id").value as? String,
                                       "matchRatio":"50"] as? [String: String]
+                    //profilin üst kısmı için bilgileri burda alıp açılırken burdaki verilleri kullanabilirz
+                    //alt kısmındaki postlar sonradan yüklenir
                     self.firebaseUsersDatas.append(newElement!)
                 }
             }
@@ -136,6 +123,20 @@ class MatchTableViewController: UITableViewController{
         }) { (error) in
             print(error.localizedDescription)
         }
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //tabBarController?.selectedIndex = 3// istediğin fragmenti açıyor
+        print(firebaseUsersDatas[indexPath.row])
+
+        ref.child("Users").child(firebaseUsersDatas[indexPath.row]["id"] as! String).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let tabbar = self.tabBarController as! HomeTabBarController
+            tabbar.tempUsersDatas = snapshot.value as? Dictionary<String, Any>
+            self.performSegue(withIdentifier: "toProfile", sender: self)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+
     }
     
     /*override func didReceiveMemoryWarning() {
