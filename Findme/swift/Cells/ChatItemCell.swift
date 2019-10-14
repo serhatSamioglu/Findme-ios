@@ -28,21 +28,47 @@ class ChatItemCell: UITableViewCell {
     }()
     
     let timeLabel: UILabel = {
-       let label = UILabel()
-        label.text = "HH:MM:SS"
+        let label = UILabel()
+        //label.text = "HH:MM:SS"
+        label.font = UIFont.systemFont(ofSize: 13)
+        label.textColor = UIColor.darkGray
         label.translatesAutoresizingMaskIntoConstraints = false
+        
         return label
-    }()//(Ep 10) 12:22
+    }()
+    
+    let unreadMessages: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 7
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        
+        return imageView
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
     
         addSubview(profileImageView)
-        //need x,y,width,height anchors
+        addSubview(timeLabel)
+        addSubview(unreadMessages)
+        //need x,y,width,height anchors for profileImageView
         profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
         profileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 48).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        //need x,y,width,height anchors for timeLabel
+        timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        timeLabel.centerYAnchor.constraint(equalTo: textLabel!.centerYAnchor).isActive = true
+        timeLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        timeLabel.heightAnchor.constraint(equalTo: textLabel!.heightAnchor).isActive = true
+        //need x,y,width,height anchors for unreadedMessage
+        unreadMessages.rightAnchor.constraint(equalTo: timeLabel.centerXAnchor).isActive = true
+        unreadMessages.centerYAnchor.constraint(equalTo: detailTextLabel!.centerYAnchor).isActive = true
+        //unreadMessages.topAnchor.constraint(equalTo: self.topAnchor, constant: 18).isActive = true
+        unreadMessages.widthAnchor.constraint(equalToConstant: 14).isActive = true
+        unreadMessages.heightAnchor.constraint(equalToConstant: 14).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

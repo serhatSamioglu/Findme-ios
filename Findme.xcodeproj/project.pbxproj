@@ -15,6 +15,7 @@
 		590DF9E12320624C00D981E1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DF9DF2320624C00D981E1 /* ProfileViewController.swift */; };
 		590DF9E22320624C00D981E1 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 590DF9E02320624C00D981E1 /* ProfileViewController.xib */; };
 		590E7D37232AD64500B324CE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E7D36232AD64500B324CE /* Message.swift */; };
+		590E7F3F2349209B0022F7E1 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E7F3E2349209B0022F7E1 /* ChatMessageCell.swift */; };
 		590EBA0A2319D23C002086B6 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590EBA092319D23C002086B6 /* ImageService.swift */; };
 		590EBA112319D9AD002086B6 /* MatchItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590EBA0F2319D9AD002086B6 /* MatchItemTableViewCell.swift */; };
 		590EBA122319D9AD002086B6 /* MatchItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 590EBA102319D9AD002086B6 /* MatchItemTableViewCell.xib */; };
@@ -69,6 +70,7 @@
 		590DF9DF2320624C00D981E1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		590DF9E02320624C00D981E1 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		590E7D36232AD64500B324CE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		590E7F3E2349209B0022F7E1 /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		590EBA092319D23C002086B6 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		590EBA0F2319D9AD002086B6 /* MatchItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchItemTableViewCell.swift; sourceTree = "<group>"; };
 		590EBA102319D9AD002086B6 /* MatchItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchItemTableViewCell.xib; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		590EBA0E2319D979002086B6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				590E7F3E2349209B0022F7E1 /* ChatMessageCell.swift */,
 				590EBA0F2319D9AD002086B6 /* MatchItemTableViewCell.swift */,
 				590EBA102319D9AD002086B6 /* MatchItemTableViewCell.xib */,
 				590EC31C233BE5E100F1FEF7 /* ChatItemTableViewCell.swift */,
@@ -534,6 +537,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				590EC31E233BE5E100F1FEF7 /* ChatItemTableViewCell.swift in Sources */,
+				590E7F3F2349209B0022F7E1 /* ChatMessageCell.swift in Sources */,
 				59144BE623243BC000E9A75D /* ChatLogController.swift in Sources */,
 				590C41442316CE0400FDBF7A /* ToastView.swift in Sources */,
 				590C634A2318906F00CDC8D9 /* MatchTableViewController.swift in Sources */,

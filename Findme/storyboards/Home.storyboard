@@ -201,7 +201,7 @@
             </objects>
             <point key="canvasLocation" x="1173.913043478261" y="511.60714285714283"/>
         </scene>
-        <!--Item-->
+        <!--Chat-->
         <scene sceneID="aRb-4h-IAX">
             <objects>
                 <tableViewController id="tmQ-H0-J9W" customClass="ChatTableViewController" customModule="Findme" customModuleProvider="target" sceneMemberID="viewController">
@@ -224,7 +224,7 @@
                             <outlet property="delegate" destination="tmQ-H0-J9W" id="QEK-Lr-Zls"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" image="icons8-chat-30" id="MnK-cs-LbP"/>
+                    <tabBarItem key="tabBarItem" title="Chat" image="icons8-chat-30" id="MnK-cs-LbP"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gZa-Gz-5O6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -126,8 +126,6 @@ class MatchTableViewController: UITableViewController{
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //tabBarController?.selectedIndex = 3// istediğin fragmenti açıyor
-        print(firebaseUsersDatas[indexPath.row])
-
         ref.child("Users").child(firebaseUsersDatas[indexPath.row]["id"] as! String).observeSingleEvent(of: .value, with: { (snapshot) in
             
             let tabbar = self.tabBarController as! HomeTabBarController
@@ -136,7 +134,6 @@ class MatchTableViewController: UITableViewController{
         }) { (error) in
             print(error.localizedDescription)
         }
-
     }
     
     /*override func didReceiveMemoryWarning() {
